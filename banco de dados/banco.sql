@@ -27,6 +27,7 @@ create table livro(
     titulo varchar(100) not null unique,
     autor varchar(100) not null,
     genero varchar(50) not null,
+    imagem varchar(100) not null,
     preco decimal(10,2) not null,
     qtd_estoque int not null
 );
