@@ -6,6 +6,7 @@ use magic_world_bookstore;
 create table usuario(
     cpf varchar(14) primary key not null,
     nome varchar(100) not null,
+    genero varchar(9) not null check(genero in ('masculino','feminino','outro')),
     dt_nasc date not null,
     email varchar(100) not null,
     senha varchar(50) not null,
