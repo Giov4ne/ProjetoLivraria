@@ -1,0 +1,78 @@
+:root{
+    --color1: #65647C;
+    --color2: #FFF;
+    --color3: #F0F0F0;
+    --color4: #9796BA;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--color1);
+    height: 20vh;
+}
+
+#logo{
+    height: 100%;
+}
+
+#pesquisa{
+    width: 35%;
+    height: 22%;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 35px;
+}
+
+#barra-pesquisa{
+    grid-area: 1 / 1 / 2 / 3;
+    border: 0;
+    outline: 0;
+    border-radius: 30px;
+    padding: 0 8px;
+}
+
+#pesquisa > div{
+    grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+#lupa{
+    width: 25px;
+    height: 25px;
+}
+
+#conta{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 5px;
+}
+
+#img-perfil{
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+#conta > div{
+    grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--color3);
+}
+
+.icones{
+    width: 40px;
+    height: 40px;
+}
