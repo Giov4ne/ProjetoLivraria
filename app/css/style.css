@@ -3,21 +3,28 @@
     --color2: #9796BA;
     --color3: #F0F0F0;
     --color4: #FFF;
+    font-size: 12pt;
 }
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: var(--color3);
 }
 
 header{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--color1);
-    height: 20vh;
+    height: 15vh;
+    padding: 0 5%;
 }
 
 #logo{
@@ -25,43 +32,46 @@ header{
 }
 
 #pesquisa{
-    width: 35%;
-    height: 22%;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 35px;
+    grid-template-columns: 1fr 2.9vw;
+    width: 27vw;
+    height: 4vh;
 }
 
 #barra-pesquisa{
     grid-area: 1 / 1 / 2 / 3;
+    border-radius: 100px;
     border: 0;
     outline: 0;
-    border-radius: 30px;
-    padding: 0 8px;
-}
-
-#pesquisa > div{
-    grid-area: 1 / 2 / 2 / 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 30px;
+    padding: 0 38px 0 8px;
+    height: 4.4vh;
 }
 
 #lupa{
-    width: 25px;
-    height: 25px;
+    grid-area: 1 / 2 / 2 / 3;
+    margin: auto;
+    width: 2vw;
+}
+
+#conta-carrinho{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 18vw;
 }
 
 #conta{
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 3fr;
-    column-gap: 5px;
+    grid-template-columns: 3vw 1fr;
+    column-gap: 0.7vw;
 }
 
-#img-perfil{
+#perfil{
     grid-area: 1 / 1 / 2 / 2;
+    width: 3vw;
 }
 
 #conta > div{
@@ -69,10 +79,72 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: var(--color3);
+}
+
+.boas-vindas{
+    color: var(--color4);
+    font-size: 1vw; /*FAZER ALTERAÇÃO*/
+    letter-spacing: 0.05vw;
+}
+
+#carrinho{
+    width: 3.1vw;
 }
 
 .icones{
-    width: 40px;
-    height: 40px;
+    cursor: pointer;
+}
+
+#banner{
+    padding: 5% 0;
+}
+
+#hero{
+    width: 100%;
+}
+
+#produtos{
+    background-color: var(--color4);
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+#filtros{
+    border-right: 1px solid grey;
+    padding: 18px 15px;
+    font-size: 1rem;
+}
+
+#filtros > div{
+    position: sticky;
+    top: 18px;
+}
+
+#catalogo{
+    padding: 30px;
+}
+
+#voltar{
+    border: 0;
+    width: 100%;
+    text-align: center;
+    background-color: var(--color2);
+    color: var(--color4);
+    padding: 12px 5px;
+    cursor: pointer;
+    transition: 0.15s;
+    font-size: 1rem;
+}
+
+#voltar:hover{
+    background-color: #8d8bbd;
+}
+
+footer{
+    text-align: center;
+    font-size: 1.1rem;
+    background-color: var(--color1);
+    color: var(--color4);
+    padding: 30px 5px;
+    cursor: default;
 }
