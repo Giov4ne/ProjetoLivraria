@@ -31,16 +31,34 @@
             <section id="filtros">
                 <div>
                     <p>Filtrar por:</p>
-                    <p>Filtro</p>
-                    <p>Filtro</p>
-                    <p>Filtro</p>
-                    <p>Filtro</p>
-                    <p>Filtro</p>
-                    <p>Filtro</p>
-                    <p>Filtro</p>
-                    <p>Filtro</p>
-                    <p>Filtro</p>
-                    <p>Filtro</p>
+                    <ul>
+                        <li>
+                            <input type="checkbox" name="romance" id="romance">
+                            <label for="romance">Romance</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="suspense" id="suspense">
+                            <label for="suspense">Suspense</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="terror" id="terror">
+                            <label for="terror">Terror</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="acao" id="acao">
+                            <label for="acao">Ação</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="comedia" id="comedia">
+                            <label for="comedia">Comédia</label>
+                        </li>
+                    </ul>
+                    <div id="valor-min-max">
+                        <label for="valor-min">De:</label>
+                        <input type="number" name="valor-min" id="valor-min" placeholder="R$ 00,00">
+                        <label for="valor-max">Até:</label>
+                        <input type="number" name="valor-max" id="valor-max" placeholder="R$ 00,00">
+                    </div>
                 </div>
             </section>
             <section id="catalogo">
