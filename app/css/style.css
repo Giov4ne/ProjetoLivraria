@@ -3,7 +3,8 @@
     --color2: #9796BA;
     --color3: #F0F0F0;
     --color4: #FFF;
-    font-size: 12pt;
+    --color5: #dadada;
+    font-size: 1vw;
 }
 
 *{
@@ -44,8 +45,9 @@ header{
     border-radius: 100px;
     border: 0;
     outline: 0;
-    padding: 0 38px 0 8px;
+    padding: 0 2.8vw 0 1vw;
     height: 4.4vh;
+    font-size: 1rem;
 }
 
 #lupa{
@@ -83,7 +85,7 @@ header{
 
 .boas-vindas{
     color: var(--color4);
-    font-size: 1vw; /*FAZER ALTERAÇÃO*/
+    font-size: 1rem;
     letter-spacing: 0.05vw;
 }
 
@@ -111,23 +113,23 @@ header{
 
 #filtros{
     border-right: 1px solid grey;
-    padding: 18px 15px;
+    padding: 1.4vw 1.1vw;
     font-size: 1rem;
 }
 
 #filtros > div{
     position: sticky;
-    top: 18px;
+    top: 1.4vw;
 }
 
 #filtros > div > ul{
     list-style: none;
-    padding: 18px 0;
+    padding: 1.4vw 0;
     cursor: default;
 }
 
 #filtros > div > ul > li{
-    padding: 6px 0;
+    padding: 0.5vw 0;
 }
 
 input[type="checkbox"]{
@@ -138,8 +140,8 @@ input[type="checkbox"]{
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
-    row-gap: 6px;
-    column-gap: 5px;
+    row-gap: 0.5vw;
+    column-gap: 0.45vw;
 }
 
 label[for="valor-min"]{
@@ -164,15 +166,84 @@ label[for="valor-min"], label[for="valor-max"]{
 }
 
 #valor-min, #valor-max{
-    padding: 4px 0 4px 6px;
+    padding: 0.4vw 0 0.4vw 0.5vw;
+    font-size: 1rem;
     outline: 0;
     border: 0;
     background-color: var(--color3);
-    width: 90px;
+    width: 7.2vw;
 }
 
 #catalogo{
-    padding: 30px;
+    padding: 2.3vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.livro{
+    width: 22vw;
+    margin: 2vw 2vw 6vw 2vw;
+    border: 1px solid var(--color5);
+    text-align: center;
+    line-height: 2vw;
+}
+
+.img-livro{
+    width: 100%;
+}
+
+div.info-livro{
+    padding: 0.1vw 1vw 1vw 1vw;
+}
+
+div.info-livro > .titulo-livro{
+    font-size: 1.25rem;
+}
+
+div.info-livro > .autor-livro{
+    font-size: 1rem;
+}
+
+div.info-livro > .valor-livro{
+    font-size: 1.55rem;
+}
+
+div.qtd-comp{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 4fr;
+    height: 3vw;
+}
+
+div.qtd-comp > .qtd-livros{
+    grid-area: 1 / 1 / 2 / 2;
+    width: 100%;
+    padding-left: 0.6vw;
+    font-size: 1.1rem;
+    outline: 0;
+    border: 1px solid #a1a1a1;
+    border-right: 0;
+    background-color: var(--color3);
+    transition: 0.2s;
+}
+
+div.qtd-comp > .qtd-livros:hover{
+    background-color: #dfdfdf;
+}
+
+div.qtd-comp > .comprar-btn{
+    grid-area: 1 / 2 / 2 / 3;
+    font-size: 1.1rem;
+    background-color: #62FF71;
+    border: 1px solid #a1a1a1;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+div.qtd-comp > .comprar-btn:hover{
+    background-color: #61e26e;
 }
 
 #voltar{
@@ -181,7 +252,7 @@ label[for="valor-min"], label[for="valor-max"]{
     text-align: center;
     background-color: var(--color2);
     color: var(--color4);
-    padding: 12px 5px;
+    height: 6vh;
     cursor: pointer;
     transition: 0.15s;
     font-size: 1rem;
@@ -196,6 +267,9 @@ footer{
     font-size: 1.1rem;
     background-color: var(--color1);
     color: var(--color4);
-    padding: 30px 5px;
     cursor: default;
+    height: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -4,13 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="icon" href="../icons/logo-title.png">
         <title>Magic World Bookstore</title>
     </head>
     <body>
         <header>
             <img src="../img/logo.png" alt="logo" id="logo">
             <div id="pesquisa">
-                <input type="text" name="search" id="barra-pesquisa">
+                <input type="text" name="search" placeholder="Pesquisar em Magic World Bookstore..." id="barra-pesquisa">
                 <img src="../icons/lupa.svg" alt="lupa" class="icones" id="lupa">
             </div>
             <div id="conta-carrinho">
@@ -62,81 +63,78 @@
                 </div>
             </section>
             <section id="catalogo">
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
-                <p>Produto</p>
+                <div class="livro">
+                    <img src="../img/livro.png" class="img-livro" alt="livro">
+                    <div class="info-livro">
+                        <h3 class="titulo-livro">Titulo do Livro</h3>
+                        <p class="autor-livro">Por: Autor</p>
+                        <h2 class="valor-livro">R$ 99,99</h2>
+                    </div>
+                    <div class="qtd-comp">
+                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="livro">
+                    <img src="../img/livro.png" class="img-livro" alt="livro">
+                    <div class="info-livro">
+                        <h3 class="titulo-livro">Titulo do Livro</h3>
+                        <p class="autor-livro">Por: Autor</p>
+                        <h2 class="valor-livro">R$ 99,99</h2>
+                    </div>
+                    <div class="qtd-comp">
+                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="livro">
+                    <img src="../img/livro.png" class="img-livro" alt="livro">
+                    <div class="info-livro">
+                        <h3 class="titulo-livro">Titulo do Livro</h3>
+                        <p class="autor-livro">Por: Autor</p>
+                        <h2 class="valor-livro">R$ 99,99</h2>
+                    </div>
+                    <div class="qtd-comp">
+                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="livro">
+                    <img src="../img/livro.png" class="img-livro" alt="livro">
+                    <div class="info-livro">
+                        <h3 class="titulo-livro">Titulo do Livro</h3>
+                        <p class="autor-livro">Por: Autor</p>
+                        <h2 class="valor-livro">R$ 99,99</h2>
+                    </div>
+                    <div class="qtd-comp">
+                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="livro">
+                    <img src="../img/livro.png" class="img-livro" alt="livro">
+                    <div class="info-livro">
+                        <h3 class="titulo-livro">Titulo do Livro</h3>
+                        <p class="autor-livro">Por: Autor</p>
+                        <h2 class="valor-livro">R$ 99,99</h2>
+                    </div>
+                    <div class="qtd-comp">
+                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="livro">
+                    <img src="../img/livro.png" class="img-livro" alt="livro">
+                    <div class="info-livro">
+                        <h3 class="titulo-livro">Titulo do Livro</h3>
+                        <p class="autor-livro">Por: Autor</p>
+                        <h2 class="valor-livro">R$ 99,99</h2>
+                    </div>
+                    <div class="qtd-comp">
+                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
             </section>
         </section>
         <button id="voltar" onclick="window.scroll({top: 0, behavior: 'smooth'})">Voltar ao início</button>
