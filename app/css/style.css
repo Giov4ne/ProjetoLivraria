@@ -130,6 +130,13 @@ header{
 
 #filtros > div > ul > li{
     padding: 0.5vw 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#filtros > div > ul > li > label{
+    padding: 0 0 0 0.3vw;
 }
 
 input[type="checkbox"]{

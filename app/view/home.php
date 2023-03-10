@@ -1,4 +1,7 @@
-<?php include('../conexao/conn.php') ?>
+<?php
+    include('../conexao/conn.php');
+    include('../classes/Livro.php');
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -11,10 +14,14 @@
     <body>
         <header>
             <img src="../img/logo.png" alt="logo" id="logo">
-            <div id="pesquisa">
+            <!-- <x?php
+                $protocolo = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on') ? 'https' : 'http';
+                $url = '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            ?> -->
+            <form id="pesquisa">
                 <input type="text" name="search" placeholder="Pesquisar em Magic World Bookstore..." id="barra-pesquisa">
                 <img src="../icons/lupa.svg" alt="lupa" class="icones" id="lupa">
-            </div>
+            </form>
             <div id="conta-carrinho">
                 <div id="conta">
                     <img src="../icons/conta.svg" alt="perfil" class="icones" id="perfil">
@@ -34,26 +41,28 @@
                 <div>
                     <p>Filtrar por:</p>
                     <ul>
-                        <li>
+                    <?php
+
+                        $sql = 'SELECT DISTINCT genero, count(*) as qtd FROM livro GROUP BY genero';
+                        $result = $conn->query($sql);
+                        if($result->num_rows > 0){
+                            while($row = $result->fetch_object()){
+                                echo '
+                                    <li>
+                                        <input type="checkbox" name="'.$row->genero.'" id="'.$row->genero.'">
+                                        <label for="'.$row->genero.'">'.$row->genero.' ('.$row->qtd.')</label>
+                                    </li>
+                                ';
+                            }
+                        } else{
+                            echo '<li>Não há registros.</li>';
+                        }
+
+                    ?>
+                        <!-- <li>
                             <input type="checkbox" name="romance" id="romance">
                             <label for="romance">Romance</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" name="suspense" id="suspense">
-                            <label for="suspense">Suspense</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" name="terror" id="terror">
-                            <label for="terror">Terror</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" name="acao" id="acao">
-                            <label for="acao">Ação</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" name="comedia" id="comedia">
-                            <label for="comedia">Comédia</label>
-                        </li>
+                        </li> -->
                     </ul>
                     <div id="valor-min-max">
                         <label for="valor-min">De:</label>
@@ -65,30 +74,32 @@
             </section>
             <section id="catalogo">
             <?php
-
+            
                 $sql = 'SELECT * FROM livro';
                 $result = $conn->query($sql);
+                
                 if($result->num_rows > 0){
                     while($row = $result->fetch_object()){
-            ?>
-                <div class="livro">
-                    <img src="../img/livros/<?=$row->imagem?>" class="img-livro" alt="livro">
-                    <div class="info-livro">
-                        <h3 class="titulo-livro"><?=$row->titulo?></h3>
-                        <p class="autor-livro">De: <?=$row->autor?></p>
-                        <h2 class="valor-livro">R$ <?=number_format($row->preco,2,",",".")?></h2>
-                    </div>
-                    <div class="qtd-comp">
-                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1" max="<?=$row->qtd_estoque?>">
-                        <button class="comprar-btn">Comprar</button>
-                    </div>
-                </div>
-            <?php
+                        $livro = new Livro($row->cod, $row->titulo, $row->autor, $row->genero, $row->imagem, $row->preco, $row->qtd_estoque);
+                        echo '
+                            <div class="livro">
+                                <img src="../img/livros/'.$livro->getImagem().'" class="img-livro" alt="livro">
+                                <div class="info-livro">
+                                    <h3 class="titulo-livro">'.$livro->getTitulo().'</h3>
+                                    <p class="autor-livro">Por: '.$livro->getAutor().'</p>
+                                    <h2 class="valor-livro">'.$livro->getPreco().'</h2>
+                                </div>
+                                <div class="qtd-comp">
+                                    <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1" max="'.$livro->getQtdEstoque().'">
+                                    <button class="comprar-btn">Comprar</button>
+                                </div>
+                            </div>
+                        ';
                     }
                 } else{
-                    echo '<p>Não há livros disponíveis no momento.</p>';
+                    echo 'Não há livros disponíveis';
                 }
-
+            
             ?>
                 <!-- <div class="livro">
                     <img src="../img/livro.png" class="img-livro" alt="livro">

@@ -47,7 +47,7 @@ insert into usuario(cpf, nome, genero, dt_nasc, email, senha, tipo) values('079.
 insert into livro(cod, titulo, autor, genero, imagem, preco, qtd_estoque) values(11111, 'Dom Casmurro', 'Machado de Assis', 'Romance', 'dom-casmurro.jpg', 16, 100);
 insert into livro(cod, titulo, autor, genero, imagem, preco, qtd_estoque) values(22222, 'Oito Assassinatos Perfeitos', 'Peter Swanson', 'Suspense', 'oito-assassinatos-perfeitos.jpg', 41.18, 12);
 insert into livro(cod, titulo, autor, genero, imagem, preco, qtd_estoque) values(33333, 'Senhora', 'José de Alencar', 'Romance', 'senhora.webp', 12, 220);
-insert into livro(cod, titulo, autor, genero, imagem, preco, qtd_estoque) values(44444, 'A Ilha Do Tesouro', 'Robert Louis Stevenson', 'Aventura', 'a-ilha-do-tesouro.webp', 12.89, 400);
+insert into livro(cod, titulo, autor, genero, imagem, preco, qtd_estoque) values(44444, 'A Ilha Do Tesouro', 'Robert Louis Stevenson', 'Aventura', 'a-ilha-do-tesouro.jpg', 12.89, 400);
 insert into livro(cod, titulo, autor, genero, imagem, preco, qtd_estoque) values(55555, 'Morte E Vida Severina', 'João Cabral de Melo Neto', 'Poesia', 'morte-e-vida-severina.jpg', 30, 200);
 insert into livro(cod, titulo, autor, genero, imagem, preco, qtd_estoque) values(66666, 'O Telefone Preto E Outras Histórias', 'Joe Hill', 'Suspense', 'o-telefone-preto-e-outras-historias.webp', 39.93, 5);
 insert into livro(cod, titulo, autor, genero, imagem, preco, qtd_estoque) values(77777, 'O Cortiço', 'Aluísio Azevedo', 'Romance', 'o-cortico.jpg', 24.90, 40);
