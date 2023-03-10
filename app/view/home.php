@@ -9,15 +9,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="icon" href="../icons/logo-title.png">
+        <script src="../js/script.js" defer></script>
         <title>Magic World Bookstore</title>
     </head>
     <body>
         <header>
             <img src="../img/logo.png" alt="logo" id="logo">
-            <!-- <x?php
-                $protocolo = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on') ? 'https' : 'http';
-                $url = '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-            ?> -->
             <form id="pesquisa">
                 <input type="text" name="search" placeholder="Pesquisar em Magic World Bookstore..." id="barra-pesquisa">
                 <img src="../icons/lupa.svg" alt="lupa" class="icones" id="lupa">
@@ -75,7 +72,7 @@
             <section id="catalogo">
             <?php
             
-                $sql = 'SELECT * FROM livro';
+                $sql = 'SELECT * FROM livro' . (!empty($_GET['search']) ? " WHERE titulo LIKE '%$_GET[search]%'" : '');
                 $result = $conn->query($sql);
                 
                 if($result->num_rows > 0){
@@ -97,7 +94,7 @@
                         ';
                     }
                 } else{
-                    echo 'Não há livros disponíveis';
+                    echo (!empty($_GET['search'])) ? "Não há registros referentes a \"$_GET[search]\"" : 'Não há livros disponíveis';
                 }
             
             ?>
@@ -115,7 +112,7 @@
                 </div> -->
             </section>
         </section>
-        <button id="voltar" onclick="window.scroll({top: 0, behavior: 'smooth'})">Voltar ao início</button>
+        <button id="voltar">Voltar ao início</button>
         <footer>Magic World Bookstore © 2023 - Todos os direitos reservados.</footer>
     </body>
 </html>
