@@ -1,3 +1,4 @@
+<?php include('../conexao/conn.php') ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -63,7 +64,33 @@
                 </div>
             </section>
             <section id="catalogo">
+            <?php
+
+                $sql = 'SELECT * FROM livro';
+                $result = $conn->query($sql);
+                if($result->num_rows > 0){
+                    while($row = $result->fetch_object()){
+            ?>
                 <div class="livro">
+                    <img src="../img/livros/<?=$row->imagem?>" class="img-livro" alt="livro">
+                    <div class="info-livro">
+                        <h3 class="titulo-livro"><?=$row->titulo?></h3>
+                        <p class="autor-livro">De: <?=$row->autor?></p>
+                        <h2 class="valor-livro">R$ <?=number_format($row->preco,2,",",".")?></h2>
+                    </div>
+                    <div class="qtd-comp">
+                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1" max="<?=$row->qtd_estoque?>">
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+            <?php
+                    }
+                } else{
+                    echo '<p>Não há livros disponíveis no momento.</p>';
+                }
+
+            ?>
+                <!-- <div class="livro">
                     <img src="../img/livro.png" class="img-livro" alt="livro">
                     <div class="info-livro">
                         <h3 class="titulo-livro">Titulo do Livro</h3>
@@ -74,67 +101,7 @@
                         <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
                         <button class="comprar-btn">Comprar</button>
                     </div>
-                </div>
-                <div class="livro">
-                    <img src="../img/livro.png" class="img-livro" alt="livro">
-                    <div class="info-livro">
-                        <h3 class="titulo-livro">Titulo do Livro</h3>
-                        <p class="autor-livro">Por: Autor</p>
-                        <h2 class="valor-livro">R$ 99,99</h2>
-                    </div>
-                    <div class="qtd-comp">
-                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
-                        <button class="comprar-btn">Comprar</button>
-                    </div>
-                </div>
-                <div class="livro">
-                    <img src="../img/livro.png" class="img-livro" alt="livro">
-                    <div class="info-livro">
-                        <h3 class="titulo-livro">Titulo do Livro</h3>
-                        <p class="autor-livro">Por: Autor</p>
-                        <h2 class="valor-livro">R$ 99,99</h2>
-                    </div>
-                    <div class="qtd-comp">
-                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
-                        <button class="comprar-btn">Comprar</button>
-                    </div>
-                </div>
-                <div class="livro">
-                    <img src="../img/livro.png" class="img-livro" alt="livro">
-                    <div class="info-livro">
-                        <h3 class="titulo-livro">Titulo do Livro</h3>
-                        <p class="autor-livro">Por: Autor</p>
-                        <h2 class="valor-livro">R$ 99,99</h2>
-                    </div>
-                    <div class="qtd-comp">
-                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
-                        <button class="comprar-btn">Comprar</button>
-                    </div>
-                </div>
-                <div class="livro">
-                    <img src="../img/livro.png" class="img-livro" alt="livro">
-                    <div class="info-livro">
-                        <h3 class="titulo-livro">Titulo do Livro</h3>
-                        <p class="autor-livro">Por: Autor</p>
-                        <h2 class="valor-livro">R$ 99,99</h2>
-                    </div>
-                    <div class="qtd-comp">
-                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
-                        <button class="comprar-btn">Comprar</button>
-                    </div>
-                </div>
-                <div class="livro">
-                    <img src="../img/livro.png" class="img-livro" alt="livro">
-                    <div class="info-livro">
-                        <h3 class="titulo-livro">Titulo do Livro</h3>
-                        <p class="autor-livro">Por: Autor</p>
-                        <h2 class="valor-livro">R$ 99,99</h2>
-                    </div>
-                    <div class="qtd-comp">
-                        <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1">
-                        <button class="comprar-btn">Comprar</button>
-                    </div>
-                </div>
+                </div> -->
             </section>
         </section>
         <button id="voltar" onclick="window.scroll({top: 0, behavior: 'smooth'})">Voltar ao início</button>
