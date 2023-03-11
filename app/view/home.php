@@ -86,12 +86,23 @@
                                     <p class="autor-livro">Por: '.$livro->getAutor().'</p>
                                     <h2 class="valor-livro">'.$livro->getPreco().'</h2>
                                 </div>
+                            ';
+                        if($row->qtd_estoque > 0){
+                            echo '
                                 <div class="qtd-comp">
-                                    <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1" max="'.$livro->getQtdEstoque().'">
+                                    <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1" max="'.$row->qtd_estoque.'">
                                     <button class="comprar-btn">Comprar</button>
                                 </div>
                             </div>
-                        ';
+                            ';
+                        } else{
+                            echo '
+                                <div class="esgotado">
+                                    <p>Esgotado</p>
+                                </div>
+                            </div>
+                            ';
+                        }
                     }
                 } else{
                     echo (!empty($_GET['search'])) ? "Não há registros referentes a \"$_GET[search]\"" : 'Não há livros disponíveis';

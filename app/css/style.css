@@ -245,15 +245,26 @@ div.qtd-comp > .qtd-livros:hover{
 
 div.qtd-comp > .comprar-btn{
     grid-area: 1 / 2 / 2 / 3;
-    font-size: 1.1rem;
     background-color: #62FF71;
-    border: 1px solid #a1a1a1;
     cursor: pointer;
     transition: 0.2s;
 }
 
 div.qtd-comp > .comprar-btn:hover{
     background-color: #61e26e;
+}
+
+div.esgotado{
+    background-color: #ff7575;
+    height: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.qtd-comp > .comprar-btn, div.esgotado{
+    border: 1px solid #a1a1a1;
+    font-size: 1.25rem;
 }
 
 #voltar{
