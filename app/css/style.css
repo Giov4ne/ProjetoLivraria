@@ -112,7 +112,7 @@ header{
 }
 
 #filtros{
-    border-right: 1px solid grey;
+    border-right: 0.1vw solid grey;
     padding: 1.4vw 1.1vw;
     font-size: 1rem;
 }
@@ -181,6 +181,17 @@ label[for="valor-min"], label[for="valor-max"]{
     width: 7.2vw;
 }
 
+#filtrar-btn{
+    font-size: 1rem;
+    width: 5vw;
+    margin: 1.5vw auto;
+    border: 0.1vw solid var(--color5);
+    outline: 0;
+    cursor: pointer;
+    background-color: var(--color3);
+    padding: 0.4vw 0.3vw;
+}
+
 #catalogo{
     padding: 2.3vw;
     display: flex;
@@ -192,7 +203,7 @@ label[for="valor-min"], label[for="valor-max"]{
 .livro{
     width: 22vw;
     margin: 2vw 2vw 6vw 2vw;
-    border: 1px solid var(--color5);
+    border: 0.1vw solid var(--color5);
     line-height: 2vw;
     text-align: center;
     display: flex;
@@ -233,7 +244,7 @@ div.qtd-comp > .qtd-livros{
     padding-left: 0.5vw;
     font-size: 1.1rem;
     outline: 0;
-    border: 1px solid #a1a1a1;
+    border: 0.1vw solid #a1a1a1;
     border-right: 0;
     background-color: var(--color3);
     transition: 0.2s;
@@ -263,7 +274,7 @@ div.esgotado{
 }
 
 div.qtd-comp > .comprar-btn, div.esgotado{
-    border: 1px solid #a1a1a1;
+    border: 0.1vw solid #a1a1a1;
     font-size: 1.25rem;
 }
 

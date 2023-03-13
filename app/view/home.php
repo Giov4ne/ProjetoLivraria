@@ -44,9 +44,14 @@
                         $result = $conn->query($sql);
                         if($result->num_rows > 0){
                             while($row = $result->fetch_object()){
+                                if(!empty($_GET['generos']) && preg_match("/{$row->genero}/i", $_GET['generos'])){
+                                    $atributo = 'checked';
+                                } else{
+                                    $atributo = '';
+                                }
                                 echo '
                                     <li>
-                                        <input type="checkbox" name="'.$row->genero.'" id="'.$row->genero.'">
+                                        <input type="checkbox" class="genero" name="'.$row->genero.'" id="'.$row->genero.'" '.$atributo.'>
                                         <label for="'.$row->genero.'">'.$row->genero.' ('.$row->qtd.')</label>
                                     </li>
                                 ';
@@ -63,16 +68,40 @@
                     </ul>
                     <div id="valor-min-max">
                         <label for="valor-min">De:</label>
-                        <input type="number" name="valor-min" id="valor-min" placeholder="R$ 00,00">
+                        <input type="number" name="valor-min" id="valor-min" <?php if(!empty($_GET['min']) && !empty($_GET['max'])) echo "value='$_GET[min]'" ?> placeholder="R$ 00,00">
                         <label for="valor-max">Até:</label>
-                        <input type="number" name="valor-max" id="valor-max" placeholder="R$ 00,00">
+                        <input type="number" name="valor-max" id="valor-max" <?php if(!empty($_GET['max']) && !empty($_GET['min'])) echo "value='$_GET[max]'" ?> placeholder="R$ 00,00">
                     </div>
+                    <button id="filtrar-btn">Filtrar</button>
                 </div>
             </section>
             <section id="catalogo">
             <?php
             
-                $sql = 'SELECT * FROM livro' . (!empty($_GET['search']) ? " WHERE titulo LIKE '%$_GET[search]%'" : '');
+                if(!empty($_REQUEST['action']) && $_REQUEST['action']==='filter' && (!empty($_GET['generos']) || !empty($_GET['min']) && !empty($_GET['max']))){
+                    $complementoSql = '';
+                    if(!empty($_GET['generos'])){
+                        $generos = explode(',', $_GET['generos']);
+                        $complementoSql = 'WHERE genero IN (';
+                        foreach($generos as $key => $gen){
+                            $complementoSql .= "'$gen'";
+                            if($key < count($generos)-1){
+                                $complementoSql .= ',';
+                            } else{
+                                $complementoSql .= ')';
+                            }
+                        }
+                    }
+                    if(!empty($_GET['min']) && !empty($_GET['max'])){
+                        $complementoSql .= (!empty($_GET['generos'])) ?
+                        " AND preco BETWEEN $_GET[min] AND $_GET[max]" :
+                        "WHERE preco BETWEEN $_GET[min] AND $_GET[max]";
+                    }
+                    $sql = "SELECT * FROM livro $complementoSql";
+                } else{
+                    $sql = 'SELECT * FROM livro' . (!empty($_GET['search']) ? " WHERE titulo LIKE '%$_GET[search]%'" : '');
+                }
+
                 $result = $conn->query($sql);
                 
                 if($result->num_rows > 0){
