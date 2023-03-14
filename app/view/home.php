@@ -1,6 +1,19 @@
 <?php
     include('../conexao/conn.php');
     include('../classes/Livro.php');
+    session_start();
+    if(!empty($_REQUEST['action']) && $_REQUEST['action']==='buy' && !empty($_GET['cod']) && !empty($_GET['qtd'])){
+        echo "<script>
+            setTimeout(()=>{
+                document.querySelector('#carrinho').classList.add('carrinho-on');
+                menuAberto = true;
+            }, 100);
+        </script>";
+        $_SESSION["cod$_GET[cod]"] = "$_GET[cod], $_GET[qtd]";
+    }
+    if(!empty($_REQUEST['action']) && $_REQUEST['action']==='erase' && !empty($_GET['cod'])){
+        unset($_SESSION["cod$_GET[cod]"]);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -27,9 +40,59 @@
                         <span class="boas-vindas">Username</span>
                     </div>
                 </div>
-                <img src="../icons/carrinho.svg" alt="carrinho" class="icones" id="carrinho">
+                <div id="carrinho-icon">
+                    <span id="qtd-itens-car"><?=count($_SESSION)?></span>
+                    <img src="../icons/carrinho.svg" alt="carrinho" class="icones" id="carrinho-icon-img">
+                </div>
             </div>
         </header>
+        <aside id="carrinho" class="carrinho-off">
+            <div id="c1">
+                <h2 id="titulo-carrinho">Meu Carrinho</h2>
+                <button id="fecha-carrinho">X</button>
+            </div>
+            <div id="c2">
+            <?php
+                if(empty($_SESSION)){
+                    echo '<div id="vazio">
+                            <h3>Seu carrinho está vazio!</h3>
+                            <p>Quando você escolher algum dos nossos <br>produtos, o mostraremos aqui :)</p>
+                          </div>
+                    ';
+                } else{
+                    echo '<ul>';
+                    $subtotal = 0;
+                    foreach($_SESSION as $key => $value){
+                        $cod = explode(', ', $_SESSION[$key])[0];
+                        $qtd = explode(', ', $_SESSION[$key])[1];
+                        $sql = "SELECT cod, titulo, preco, imagem FROM livro WHERE cod = $cod";
+                        $result = $conn->query($sql);
+                        $livro = $result->fetch_object();
+                        $subtotal += $livro->preco * $qtd;
+                        echo '
+                            <li>
+                                <div class="item">
+                                    <img src="../img/livros/'.$livro->imagem.'" alt="'.$livro->titulo.'">
+                                    <h3>'.$livro->titulo.'</h3>
+                                    <p>'.$qtd.' unidades</p>
+                                    <h4>R$ '.number_format($livro->preco,2,',','.').'</h4>
+                                    <span onclick="location.href=\'./home.php?action=erase&cod='.$cod.'\'">Excluir</span>
+                                </div>
+                            </li>
+                        ';
+                    }
+                    echo '</ul>';
+                    echo '
+                        <div id="compra">
+                            <p>Subtotal: <strong>R$ '.number_format($subtotal,2,',','.').'</strong></p>
+                            <button id="finalizar-comp-btn">Finalizar Compra</button>
+                            <span onclick="abrirFecharMenu()">< Continuar comprando</span>
+                        </div>
+                    ';
+                }
+            ?>
+            </div>
+        </aside>
         <section id="banner">
             <img src="../img/banner.jpg" alt="banner" id="hero">
         </section>
@@ -61,10 +124,6 @@
                         }
 
                     ?>
-                        <!-- <li>
-                            <input type="checkbox" name="romance" id="romance">
-                            <label for="romance">Romance</label>
-                        </li> -->
                     </ul>
                     <div id="valor-min-max">
                         <label for="valor-min">De:</label>
@@ -119,8 +178,8 @@
                         if($row->qtd_estoque > 0){
                             echo '
                                 <div class="qtd-comp">
-                                    <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1" max="'.$row->qtd_estoque.'">
-                                    <button class="comprar-btn">Comprar</button>
+                                    <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1" max="'.$row->qtd_estoque.'" data-c="cod'.$livro->getCod().'">
+                                    <button class="comprar-btn" data-c="cod'.$livro->getCod().'">Comprar</button>
                                 </div>
                             </div>
                             ';

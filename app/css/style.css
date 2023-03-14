@@ -87,13 +87,190 @@ header{
     color: var(--color4);
     font-size: 1rem;
     letter-spacing: 0.05vw;
+    cursor: default;
 }
 
-#carrinho{
+#carrinho-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 4.3vw;
+    cursor: pointer;
+}
+
+#qtd-itens-car{
+    position: absolute;
+    top: 0.14vw;
+    right: 0;
+    background-color: #f00;
+    color: var(--color4);
+    border-radius: 50%;
+    font-size: 0.91rem;
+    min-width: 1.2vw;
+    min-height: 1.2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#carrinho-icon-img{
     width: 3.1vw;
 }
 
 .icones{
+    cursor: pointer;
+}
+
+#carrinho{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    background-color: var(--color4);
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+.carrinho-off{
+    width: 0;
+}
+
+.carrinho-on{
+    width: 23vw;
+    box-shadow: 0 0 1000vw 1000vw #0000008f;
+}
+
+#c1{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6vw 1vw;
+    background-color: var(--color5);
+}
+
+#titulo-carrinho{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--color1);
+}
+
+#fecha-carrinho{
+    border: 0;
+    outline: 0;
+    background: none;
+    cursor: pointer; 
+    font-size: 1.8rem;
+    color: var(--color1);
+}
+
+#c2{
+    height: 100%;
+    padding: 0.5vw 1vw;
+}
+
+#c2 > ul > li{
+    list-style: none;
+    margin: 1.2vw 0;
+}
+
+#vazio{
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#vazio > h3{
+    padding: 1vw 0;
+}
+
+.item{
+    border: 1px solid var(--color5);
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr 2fr 1fr;
+    column-gap: 0.1vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item > img{
+    grid-area: 1 / 1 / 4 / 2;
+    width: 100%;
+    min-height: 100%;
+}
+
+.item > h3{
+    grid-area: 1 / 2 / 2 / 4;
+    font-size: 1.18rem;
+}
+
+.item > p{
+    grid-area: 2 / 2 / 3 / 4;
+    font-size: 1rem;
+}
+
+.item > h4{
+    grid-area: 3 / 2 / 4 / 3;
+    font-size: 1.08rem;
+}
+
+.item > span{
+    grid-area: 3 / 3 / 4 / 4;
+    text-align: right;
+    padding: 0.2vw 0.8vw;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.item > h3, .item > p, .item > h4{
+    padding: 0.2vw 0;
+}
+
+#compra{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 1.2vw;
+    width: 91%;
+    height: 7vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#compra > p{
+    font-size: 1.4rem;
+}
+
+#compra > button{
+    color: var(--color4);
+    background-color: #1aae1a;
+    border: 0;
+    outline: 0;
+    border-radius: 1vw;
+    padding: 0.8vw;
+    cursor: pointer;
+    font-size: 1.12rem;
+    width: 100%;
+}
+
+#compra > span{
+    font-size: 1.12rem;
     cursor: pointer;
 }
 
@@ -271,6 +448,7 @@ div.esgotado{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: default;
 }
 
 div.qtd-comp > .comprar-btn, div.esgotado{
