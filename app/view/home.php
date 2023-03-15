@@ -1,7 +1,15 @@
 <?php
     include('../conexao/conn.php');
     include('../classes/Livro.php');
-    session_start();
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    if(!isset($_SESSION['user'])){
+        header("location: ./login.php");
+    }
+    if(!isset($_SESSION['prod'])){
+        $_SESSION['prod'] = array();
+    }
     if(!empty($_REQUEST['action']) && $_REQUEST['action']==='buy' && !empty($_GET['cod']) && !empty($_GET['qtd'])){
         echo "<script>
             setTimeout(()=>{
@@ -9,10 +17,10 @@
                 menuAberto = true;
             }, 100);
         </script>";
-        $_SESSION["cod$_GET[cod]"] = "$_GET[cod], $_GET[qtd]";
+        $_SESSION['prod']["cod$_GET[cod]"] = "$_GET[cod], $_GET[qtd]";
     }
     if(!empty($_REQUEST['action']) && $_REQUEST['action']==='erase' && !empty($_GET['cod'])){
-        unset($_SESSION["cod$_GET[cod]"]);
+        unset($_SESSION['prod']["cod$_GET[cod]"]);
     }
 ?>
 <!DOCTYPE html>
@@ -36,12 +44,25 @@
                 <div id="conta">
                     <img src="../icons/conta.svg" alt="perfil" class="icones" id="perfil">
                     <div>
-                        <span class="boas-vindas">Bem-vindo(a)</span>
-                        <span class="boas-vindas">Username</span>
+                        <?php
+                            $id = explode('id', $_SESSION['user'])[1];
+                            $sql = "SELECT nome, genero FROM usuario WHERE id = $id";
+                            $result = $conn->query($sql)->fetch_object();
+                            if($result->genero === 'masculino'){
+                                $msgBoasVindas = 'Bem-vindo';
+                            } else if($result->genero === 'feminino'){
+                                $msgBoasVindas = 'Bem-vinda';
+                            } else{
+                                $msgBoasVindas = 'Bem-vindo(a)';
+                            }
+                            $username = explode(' ', $result->nome)[0];
+                            echo '<span class="boas-vindas">'.$msgBoasVindas.'</span>';
+                            echo '<span class="boas-vindas">'.$username.'</span>';
+                        ?>
                     </div>
                 </div>
                 <div id="carrinho-icon">
-                    <span id="qtd-itens-car"><?=count($_SESSION)?></span>
+                    <span id="qtd-itens-car"><?=count($_SESSION['prod'])?></span>
                     <img src="../icons/carrinho.svg" alt="carrinho" class="icones" id="carrinho-icon-img">
                 </div>
             </div>
@@ -53,7 +74,7 @@
             </div>
             <div id="c2">
             <?php
-                if(empty($_SESSION)){
+                if(empty($_SESSION['prod'])){
                     echo '<div id="vazio">
                             <h3>Seu carrinho está vazio!</h3>
                             <p>Quando você escolher algum dos nossos <br>produtos, o mostraremos aqui :)</p>
@@ -62,9 +83,9 @@
                 } else{
                     echo '<ul>';
                     $subtotal = 0;
-                    foreach($_SESSION as $key => $value){
-                        $cod = explode(', ', $_SESSION[$key])[0];
-                        $qtd = explode(', ', $_SESSION[$key])[1];
+                    foreach($_SESSION['prod'] as $key => $value){
+                        $cod = explode(', ', $_SESSION['prod'][$key])[0];
+                        $qtd = explode(', ', $_SESSION['prod'][$key])[1];
                         $sql = "SELECT cod, titulo, preco, imagem FROM livro WHERE cod = $cod";
                         $result = $conn->query($sql);
                         $livro = $result->fetch_object();
