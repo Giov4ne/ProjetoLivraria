@@ -2,7 +2,7 @@
 
     class Usuario{
 
-        private $cpf;
+        private $id;
         private $nome;
         private $genero;
         private $dtNasc;
@@ -10,18 +10,18 @@
         private $senha;
         private $tipo;
 
-        public function __construct($cpf, $nome, $genero, $dtNasc, $email, $senha){
-            $this->cpf = $cpf;
+        public function __construct($id, $nome, $genero, $dtNasc, $email, $senha, $tipo){
+            $this->id = $id;
             $this->nome = $nome;
             $this->genero = $genero;
             $this->dtNasc = $dtNasc;
             $this->email = $email;
             $this->senha = $senha;
-            $this->tipo = 'cliente';
+            $this->tipo = $tipo;
         }
 
-        public function getCpf(){
-            return $this->cpf;
+        public function getId(){
+            return $this->id;
         }
 
         public function getNome(){

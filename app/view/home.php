@@ -1,15 +1,24 @@
 <?php
     include('../conexao/conn.php');
     include('../classes/Livro.php');
+    include('../classes/Usuario.php');
+
     if(!isset($_SESSION)){
         session_start();
     }
     if(!isset($_SESSION['user'])){
         header("location: ./login.php");
     }
+
+    $id = explode('id', $_SESSION['user'])[1];
+    $sql = "SELECT * FROM usuario WHERE id = $id";
+    $result = $conn->query($sql)->fetch_object();
+    $user = new Usuario($result->id, $result->nome, $result->genero, $result->dt_nasc, $result->email, $result->senha, $result->tipo);
+    
     if(!isset($_SESSION['prod'])){
         $_SESSION['prod'] = array();
     }
+
     if(!empty($_REQUEST['action']) && $_REQUEST['action']==='buy' && !empty($_GET['cod']) && !empty($_GET['qtd'])){
         echo "<script>
             setTimeout(()=>{
@@ -19,6 +28,7 @@
         </script>";
         $_SESSION['prod']["cod$_GET[cod]"] = "$_GET[cod], $_GET[qtd]";
     }
+
     if(!empty($_REQUEST['action']) && $_REQUEST['action']==='erase' && !empty($_GET['cod'])){
         unset($_SESSION['prod']["cod$_GET[cod]"]);
     }
@@ -27,6 +37,7 @@
 <html lang="pt-BR">
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="icon" href="../icons/logo-title.png">
@@ -35,28 +46,25 @@
     </head>
     <body>
         <header>
-            <img src="../img/logo.png" alt="logo" id="logo">
+            <img src="../img/logo.png" alt="logo" id="logo" onclick="location.href='./home.php'">
             <form id="pesquisa">
                 <input type="text" name="search" placeholder="Pesquisar em Magic World Bookstore..." id="barra-pesquisa">
                 <img src="../icons/lupa.svg" alt="lupa" class="icones" id="lupa">
             </form>
             <div id="conta-carrinho">
                 <div id="conta">
-                    <img src="../icons/conta.svg" alt="perfil" class="icones" id="perfil">
+                    <img src="../icons/conta.svg" alt="perfil" class="icones" id="perfil" onclick="location.href='./usuario.php'">
                     <div>
                         <?php
-                            $id = explode('id', $_SESSION['user'])[1];
-                            $sql = "SELECT nome, genero FROM usuario WHERE id = $id";
-                            $result = $conn->query($sql)->fetch_object();
-                            if($result->genero === 'masculino'){
+                            if($user->getGenero() === 'masculino'){
                                 $msgBoasVindas = 'Bem-vindo';
-                            } else if($result->genero === 'feminino'){
+                            } else if($user->getGenero() === 'feminino'){
                                 $msgBoasVindas = 'Bem-vinda';
                             } else{
                                 $msgBoasVindas = 'Bem-vindo(a)';
                             }
-                            $username = explode(' ', $result->nome)[0];
-                            echo '<span class="boas-vindas">'.$msgBoasVindas.'</span>';
+                            $username = explode(' ', $user->getNome())[0];
+                            echo '<span class="boas-vindas">'.$msgBoasVindas.',</span>';
                             echo '<span class="boas-vindas">'.$username.'</span>';
                         ?>
                     </div>
@@ -214,7 +222,7 @@
                         }
                     }
                 } else{
-                    echo (!empty($_GET['search'])) ? "Não há registros referentes a \"$_GET[search]\"" : 'Não há livros disponíveis';
+                    echo (!empty($_GET['search'])) ? 'Não há registros referentes a "'.htmlspecialchars($_GET['search']).'"' : 'Não há livros disponíveis';
                 }
             
             ?>

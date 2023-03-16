@@ -4,7 +4,9 @@
         session_start();
     }
     if(!empty($_POST['email']) && !empty($_POST['senha'])){
-        $sql = "SELECT * FROM usuario WHERE email = '$_POST[email]' AND senha = '$_POST[senha]'";
+        $email = $conn->real_escape_string($_POST['email']);
+        $senha = $conn->real_escape_string($_POST['senha']);
+        $sql = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'";
         $result = $conn->query($sql);
         if($result && $result->num_rows === 1){
             $_SESSION['user'] = 'id'.$result->fetch_object()->id;

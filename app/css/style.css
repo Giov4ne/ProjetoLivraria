@@ -131,6 +131,7 @@ header{
 
 #logo{
     height: 100%;
+    cursor: pointer;
 }
 
 #pesquisa{
@@ -583,4 +584,22 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#usuario-info{
+    padding: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+#usuario-info > h2{
+    font-size: 2rem;
+}
+
+#usuario-info > div{
+    margin: 0.5vw 0;
+    line-height: 1.3vw;
 }
