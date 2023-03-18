@@ -111,24 +111,38 @@
             </div>
         </aside>
         <section id="usuario-info">
-            <h2>Seus dados</h2>
             <div>
-                <p>Nome: <?=$user->getNome()?></p>
-                <p>Gênero: <?=$user->getGenero()?></p>
-                <p>Data de nascimento: <?=$user->getDtNasc()?></p>
-                <p>Idade: <span id="idade"></span></p>
-                <p>Email: <?=$user->getEmail()?></p>
+                <h2>Seus dados</h2>
+                <div>
+                    <p>Nome: <?=$user->getNome()?></p>
+                    <p>Gênero: <?=$user->getGenero()?></p>
+                    <p>Data de nascimento: <span id="dt-nasc"></span></p>
+                    <p>Idade: <span id="idade"></span></p>
+                    <p>Email: <?=$user->getEmail()?></p>
+                </div>
+                <div class="center-btn">
+                    <button onclick="location.href='?action=logoff'">Sair</button>
+                </div>
             </div>
-            <button onclick="location.href='?action=logoff'">Logoff</button>
         </section>
         <script>
             const dtAtual = new Date();
             const dtNasc = new Date('<?=$user->getDtNasc()?>');
-            const idade = dtAtual.getFullYear() - dtNasc.getFullYear();
+            let idade = dtAtual.getFullYear() - dtNasc.getFullYear();
+            
             if(dtAtual.getMonth()+1 < dtNasc.getMonth()+1 || dtAtual.getMonth()+1 === dtNasc.getMonth()+1 && dtAtual.getDate() < dtNasc.getDate()){
                 idade--;
             }
-            document.querySelector('#idade').innerText = idade;            
+
+            document.querySelector('#dt-nasc').innerText = formatarData(dtNasc);
+            document.querySelector('#idade').innerText = idade;
+
+            function formatarData(dt){
+                const dia = (dt.getDate()+1 < 10) ? '0'+(dt.getDate()+1) : dt.getDate()+1;
+                const mes = (dt.getMonth()+1 < 10) ? '0'+(dt.getMonth()+1) : dt.getMonth()+1;
+                const ano = dt.getFullYear();
+                return dia + '/' + mes + '/' + ano;
+            }
         </script>
 </body>
 </html>

@@ -94,6 +94,7 @@
                     foreach($_SESSION['prod'] as $key => $value){
                         $cod = explode(', ', $_SESSION['prod'][$key])[0];
                         $qtd = explode(', ', $_SESSION['prod'][$key])[1];
+                        $unit = ($qtd > 1) ? ' unidades' : ' unidade';
                         $sql = "SELECT cod, titulo, preco, imagem FROM livro WHERE cod = $cod";
                         $result = $conn->query($sql);
                         $livro = $result->fetch_object();
@@ -103,7 +104,7 @@
                                 <div class="item">
                                     <img src="../img/livros/'.$livro->imagem.'" alt="'.$livro->titulo.'">
                                     <h3>'.$livro->titulo.'</h3>
-                                    <p>'.$qtd.' unidades</p>
+                                    <p>'.$qtd.$unit.'</p>
                                     <h4>R$ '.number_format($livro->preco,2,',','.').'</h4>
                                     <span onclick="location.href=\'./home.php?action=erase&cod='.$cod.'\'">Excluir</span>
                                 </div>

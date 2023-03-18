@@ -298,7 +298,7 @@ header{
 }
 
 .item{
-    border: 1px solid var(--color5);
+    border: 0.1vw solid var(--color5);
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr 2fr 1fr;
@@ -591,15 +591,40 @@ footer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: left;
-    font-size: 1.2rem;
-}
-
-#usuario-info > h2{
-    font-size: 2rem;
 }
 
 #usuario-info > div{
-    margin: 0.5vw 0;
-    line-height: 1.3vw;
+    border: 0.1vw solid var(--color2);
+    border-radius: 1vw;
+    background-color: var(--color4);
+}
+
+#usuario-info > div > h2{
+    text-align: center;
+    background-color: var(--color2);
+    border-radius: 0.7vw 0.7vw 0 0;
+    padding: 0.5vw;
+    font-size: 1.8rem;
+}
+
+#usuario-info > div > div{
+    padding: 1vw 1.2vw;
+    line-height: 1.5vw;
+    font-size: 1.2rem;
+}
+
+#usuario-info > div > .center-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0 0 0.9vw 0;
+}
+
+#usuario-info > div > .center-btn > button{
+    border: 0; 
+    border-radius: 1vw;
+    padding: 0.2vw 1vw;
+    font-size: 1.2rem;   
+    background-color: var(--color3);
+    cursor: pointer;
 }
