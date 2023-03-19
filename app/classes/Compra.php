@@ -7,15 +7,15 @@
         private $hrComp;
         private $valorTotal;
         private $formaPagamento;
-        private $cpfUsuario;
+        private $idUsuario;
         private $livros;
 
-        public function __construct($cod, $dtComp, $hrComp, $formaPagamento, $cpfUsuario, $livros){
+        public function __construct($cod, $dtComp, $hrComp, $formaPagamento, $idUsuario, $livros){
             $this->cod = $cod;
             $this->dtComp = $dtComp;
             $this->hrComp = $hrComp;
             $this->formaPagamento = $formaPagamento;
-            $this->cpfUsuario = $cpfUsuario;
+            $this->idUsuario = $idUsuario;
             $this->livros = $livros;
             $this->valorTotal = $this->calcularValorTotal();
         }
@@ -52,8 +52,8 @@
             $this->formaPagamento = $formaPagamento;
         }
 
-        public function getCpfUsuario(){
-            return $this->cpfUsuario;
+        public function getIdUsuario(){
+            return $this->idUsuario;
         }
 
         public function getLivros(){

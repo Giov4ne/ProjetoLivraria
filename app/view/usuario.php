@@ -51,7 +51,7 @@
                         } else{
                             $msgBoasVindas = 'Bem-vindo(a)';
                         }
-                        $username = explode(' ', $user->getNome())[0];
+                        $username = ($user->getTipo()==='admin') ? 'Admin' : explode(' ', $user->getNome())[0];
                         echo '<span class="boas-vindas">'.$msgBoasVindas.',</span>';
                         echo '<span class="boas-vindas">'.$username.'</span>';
                     ?>

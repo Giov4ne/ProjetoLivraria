@@ -63,7 +63,7 @@
                             } else{
                                 $msgBoasVindas = 'Bem-vindo(a)';
                             }
-                            $username = explode(' ', $user->getNome())[0];
+                            $username = ($user->getTipo()==='admin') ? 'Admin' : explode(' ', $user->getNome())[0];
                             echo '<span class="boas-vindas">'.$msgBoasVindas.',</span>';
                             echo '<span class="boas-vindas">'.$username.'</span>';
                         ?>
@@ -123,6 +123,17 @@
             ?>
             </div>
         </aside>
+        <?php
+            if($user->getTipo()==='admin'){
+                echo '
+                <nav id="nav-admin">
+                    <button class="botoes-admin" onclick="location.href=\'./clientes.php\'">Gerenciar Clientes</button>
+                    <button class="botoes-admin" onclick="location.href=\'./compras.php\'">Visualizar Compras</button>
+                    <button class="botoes-admin">Cadastrar livro</button>
+                </nav>
+                ';
+            }
+        ?>
         <section id="banner">
             <img src="../img/banner.jpg" alt="banner" id="hero">
         </section>
@@ -203,9 +214,26 @@
                                     <h3 class="titulo-livro">'.$livro->getTitulo().'</h3>
                                     <p class="autor-livro">Por: '.$livro->getAutor().'</p>
                                     <h2 class="valor-livro">'.$livro->getPreco().'</h2>
+                            ';
+                        if($user->getTipo()==='admin'){
+                            echo '
+                                <p>Gênero: '.$livro->getGenero().'</p>
+                                <p>Qtd. em estoque: '.$row->qtd_estoque.'</p>
+                                <p>Cód.: '.$livro->getCod().'</p>
+                            ';
+                        }
+                        echo '
                                 </div>
                             ';
-                        if($row->qtd_estoque > 0){
+                        if($user->getTipo()==='admin'){
+                            echo '
+                                <div class="edit-del">
+                                    <button class="edit-btn">Editar</button>
+                                    <button class="delete-btn">Excluir</button>
+                                </div>
+                            </div>
+                            ';
+                        } else if($row->qtd_estoque > 0){
                             echo '
                                 <div class="qtd-comp">
                                     <input type="number" name="qtd-livros" class="qtd-livros" value="1" min="1" max="'.$row->qtd_estoque.'" data-c="cod'.$livro->getCod().'">
