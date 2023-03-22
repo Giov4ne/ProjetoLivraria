@@ -115,7 +115,7 @@
                 <h2>Seus dados</h2>
                 <div>
                     <p>Nome: <?=$user->getNome()?></p>
-                    <p>Gênero: <?=$user->getGenero()?></p>
+                    <p>Gênero: <?=($user->getGenero()==='outro') ? 'não especificado' : $user->getGenero()?></p>
                     <p>Data de nascimento: <span id="dt-nasc"></span></p>
                     <p>Idade: <span id="idade"></span></p>
                     <p>Email: <?=$user->getEmail()?></p>

@@ -52,5 +52,13 @@ function comprarLivro(codLivro){
     location.href=`?action=buy&cod=${cod}&qtd=${qtd}`;
 }
 
+const editarBtns = document.querySelectorAll('.edit-btn');
+editarBtns.forEach(btn => btn.addEventListener('click', ()=>editarLivro(btn.dataset.e)));
+
+function editarLivro(codLivro){
+    const cod = codLivro.split('cod')[1];
+    location.href=`./edit-livro.php?action=edit&cod=${cod}`;
+}
+
 const voltarBtn = document.querySelector('#voltar');
 voltarBtn.addEventListener('click', ()=>window.scroll({top:0,behavior:'smooth'})); //redireciona a tela para o topo da página

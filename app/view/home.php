@@ -228,8 +228,8 @@
                         if($user->getTipo()==='admin'){
                             echo '
                                 <div class="edit-del">
-                                    <button class="edit-btn">Editar</button>
-                                    <button class="delete-btn">Excluir</button>
+                                    <button class="edit-btn" data-e="cod'.$livro->getCod().'">Editar</button>
+                                    <button class="delete-btn" data-d="cod'.$livro->getCod().'">Excluir</button>
                                 </div>
                             </div>
                             ';
